@@ -1,0 +1,324 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", sans-serif;
+    box-sizing: border-box;
+}
+
+.menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 20px 0; /* Adjust as needed */
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo-container {
+    margin-right: 20px; /* Increase the margin for more space */
+}
+
+.logo img {
+    max-height: 110px; /* Keep the height and reduce the width */
+    max-width: auto;
+}
+
+.logo-label {
+    height: 25%;
+    text-align: center;
+}
+.logo-label-name {
+    font-size: 25px;
+    font-weight: 600;
+}
+.menu-items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px; /* Adjust as needed */
+}
+
+.menu-items a {
+    margin: 5px;
+    padding: 10px;
+    background-color: #ccc;
+    border-radius: 5px;
+    text-decoration: none;
+    color: #333;
+}
+.hero {
+    width: 100%;
+    height: 50vh; /* Adjust height as needed */
+    position: relative;
+    overflow: hidden; /* Ensure overflow is hidden */
+}
+
+.slider {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+.slide > img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.slide.active {
+    opacity: 1;
+}
+
+.navigator-wrapper {
+    width: 100%;
+    height: 40dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.navigator-container {
+    width: 60%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.navigator-container > a {
+    width: calc(25% - 10px);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color: black;
+    transition: 0.3s ease;
+}
+
+.navigator-container > a:hover {
+    background-color: #d3d3d3;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    transform: scale(1.02);
+}
+.icons {
+    width: 50%;
+}
+
+.news-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.news-label-container {
+    min-width: 60%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    border-bottom: 1px solid black;
+}
+.news-container {
+    min-width: 60%;
+    margin: 10px 0;
+    display: grid;
+    grid-template-columns: repeat(
+        auto-fit,
+        minmax(300px, 1fr)
+    ); /* Adjust 200px to your preference */
+    gap: 10px; /* Adjust gap between items */
+    /* Adjust maximum width */
+}
+
+.news {
+    background-color: #f0f0f0;
+    height: 400px; /* Adjust height as needed */
+}
+
+.hamburger-menu-btn {
+    display: none;
+    margin-right: 10px;
+    padding: 5px;
+}
+.line {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: black;
+    margin: 5px auto;
+    transition: transform 0.3s ease;
+}
+
+.hamburger-menu-btn.open .line:nth-child(1) {
+    transform: rotate(-45deg) translate(-5px, 6px);
+}
+.hamburger-menu-btn.open .line:nth-child(2) {
+    opacity: 0;
+}
+.hamburger-menu-btn.open .line:nth-child(3) {
+    transform: rotate(45deg) translate(-5px, -6px);
+}
+.footer {
+    padding: 20px 0;
+    text-align: center;
+}
+
+@media screen and (max-width: 1400px) {
+    .menu {
+        margin: 0 5%;
+        margin-bottom: 2%;
+    }
+    .hero {
+        height: 60dvh;
+    }
+    .navigator-container {
+        width: 90%;
+    }
+    .navigator-container > a {
+        width: 20%;
+
+        padding: 30px 0;
+    }
+    .icons {
+        width: 20%;
+    }
+    .news-label-container {
+        width: 90%;
+    }
+    .news-container {
+        width: 90%;
+    }
+    .news {
+        width: 100%;
+        padding: 20px;
+    }
+}
+@media screen and (max-width: 700px) {
+    body {
+        width: 100%;
+    }
+    .menu {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-direction: row;
+        position: relative;
+        min-height: 50px;
+    }
+    .navigator-container > a {
+        width: calc(50% - 10px); /* Two elements per row with some spacing */
+        margin-bottom: 10px;
+    }
+    .news-container {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
+    .news {
+        width: 70%;
+    }
+    .logo {
+        width: 60%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: row;
+        margin-left: 10px;
+    }
+    .logo-container {
+        max-width: 30%;
+        margin: 0;
+    }
+    .logo-container > img {
+        width: 100%;
+    }
+    .logo-label {
+        min-width: 50%;
+        margin-left: 10px;
+        line-height: 0.9;
+    }
+    .logo-label > p {
+        font-size: 12px;
+    }
+    .logo-label-name {
+        font-size: 16px;
+    }
+    .menu-items {
+        display: none;
+        animation: closeMenu 0.3s forwards;
+        /* Hide menu items by default on mobile */
+        /* Add any specific styles for mobile */
+    }
+    .hamburger-menu-btn {
+        display: block; /* Show hamburger menu button on mobile */
+        /* Add any specific styles for mobile */
+    }
+    .menu-items.active {
+        width: 100%;
+        display: flex;
+        align-items: flex-start;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        background-color: white;
+        z-index: 10;
+        padding: 10px 0;
+        animation: expandMenu 0.3s forwards;
+    }
+    .menu-items.closing {
+        animation: collapseMenu 0.5s forwards; /* Apply collapseMenu animation when closing */
+    }
+    .menu-items > a {
+        background: none;
+        padding: 0;
+        margin-left: 20px;
+        font-size: 14px;
+    }
+    .hero {
+        z-index: 1;
+        height: 30dvh;
+    }
+    .news-label-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .news-label-container > a {
+        display: none;
+    }
+}
+@keyframes expandMenu {
+    0% {
+        height: 0; /* Start height */
+        opacity: 0;
+    }
+    30% {
+        opacity: 0;
+        height: 30vh;
+    }
+    100% {
+        min-height: 50vh; /* End height */
+        opacity: 1;
+    }
+}

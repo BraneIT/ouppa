@@ -1,6 +1,14 @@
 <?php
 
+use App\Models\News;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\NewsController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\GalleryController;
+use App\Http\Controllers\AdminNewsPagesController;
+use App\Http\Controllers\AdminGaleryPagesController;
+use App\Http\Controllers\FrontendController;
 
 /*
 |--------------------------------------------------------------------------
@@ -12,7 +20,32 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+// Login routes
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/login', [LoginController::class, 'getLogin'])->name('login_view');
+Route::post('/login', [LoginController::class, 'authenticate'])->name('login');
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
+// Admin routes
+Route::middleware('auth')->group(function(){
+    // news routes
+    Route::get('/admin', [Controller::class, 'index']);
+    Route::get('/admin/news', [AdminNewsPagesController::class, 'index']);
+    Route::get('/admin/news/add', [AdminNewsPagesController::class, 'store']);
+    Route::post('/admin/news/add', [NewsController::class, 'store']);
+    Route::get('/admin/news/edit/{id}', [AdminNewsPagesController::class, 'edit'])->name('admin.news.edit');
+    Route::post('/admin/news/edit/{id}', [NewsController::class, 'edit'])->name('admin.news.update');
+    Route::delete('/admin/news/{id}', [NewsController::class, 'destroy'])->name('admin.news.destroy');
+    Route::get('/admin/news/search', [NewsController::class, 'search'])->name('search.news');
+
+
+    // gallery routes
+    Route::get('/admin/gallery', [AdminGaleryPagesController::class, 'index']);
+    Route::get('/admin/gallery/add', [AdminGaleryPagesController::class, 'store']);
+    Route::post('/admin/gallery/add', [GalleryController::class, 'store'])->name('gallery.store');
+    Route::delete('/admin/gallery/{id}', [GalleryController::class, 'destroy'])->name('gallery.destroy');
 });
+
+// Frontend routes
+
+Route::get('/', [FrontendController::class, 'index']);
