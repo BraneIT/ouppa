@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminDocumentsPageController;
 use App\Models\News;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Route;
@@ -8,7 +9,9 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\AdminNewsPagesController;
 use App\Http\Controllers\AdminGaleryPagesController;
+use App\Http\Controllers\DocumentsController;
 use App\Http\Controllers\FrontendController;
+use League\CommonMark\Node\Block\Document;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,6 +47,14 @@ Route::middleware('auth')->group(function(){
     Route::get('/admin/gallery/add', [AdminGaleryPagesController::class, 'store']);
     Route::post('/admin/gallery/add', [GalleryController::class, 'store'])->name('gallery.store');
     Route::delete('/admin/gallery/{id}', [GalleryController::class, 'destroy'])->name('gallery.destroy');
+
+    // erasmus routes
+    Route::get('/admin/erasmus', [AdminDocumentsPageController::class, 'index_erasmus']);
+    Route::get('/admin/erasmus/add', [AdminDocumentsPageController::class, 'show_add_erasmus']);
+    Route::post('/admin/erasmus/add', [DocumentsController::class, 'store_erasmus']);
+    Route::get('/admin/erasmus/edit/{id}', [AdminDocumentsPageController::class, 'edit_erasmus'])->name('erasmus.edit.show');
+    Route::post('/admin/erasmus/edit/{id}', [DocumentsController::class, 'edit_erasmus'])->name('erasmus.update');
+    Route::delete('/admin/erasmus/{id}', [DocumentsController::class, 'destroy_erasmus'])->name('erasmus.destroy');
 });
 
 // Frontend routes

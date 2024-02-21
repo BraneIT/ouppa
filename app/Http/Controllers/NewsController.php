@@ -59,8 +59,6 @@ class NewsController extends Controller
         $news = News::findOrFail($id);
         
         $imagePath = public_path($news->image);
-        var_dump($imagePath);
-        var_dump(File::exists($imagePath));
         // Check if the file exists before attempting to delete it
         if (File::exists($imagePath)) {
             // Delete the image file from the public folder
@@ -68,7 +66,7 @@ class NewsController extends Controller
         }
         $news->delete();
         
-        // return redirect('/admin/news')->with('success', 'News item deleted successfully.');
+        return redirect('/admin/news')->with('success', 'News item deleted successfully.');
     }
     
 

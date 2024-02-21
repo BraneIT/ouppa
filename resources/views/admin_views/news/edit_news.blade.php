@@ -6,7 +6,7 @@
     <a href="/admin/news">Cancel</a>
 </div>
      <div class="form-container">
-        <h2>Add News</h2>
+        <h2>Edit News</h2>
         <form method="POST" action="{{ route('admin.news.update', $news->id) }}" enctype="multipart/form-data">
             @csrf
             

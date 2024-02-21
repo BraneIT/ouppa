@@ -16,6 +16,7 @@
                 <a href="/admin">Home</a>
                 <a href="/admin/news">News</a>    
                 <a href="/admin/gallery">Galery</a>
+                <a href="/admin/erasmus">Erasmus+</a>
             </div>
         </nav>
 

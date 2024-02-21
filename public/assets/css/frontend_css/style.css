@@ -39,16 +39,96 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    margin-top: 20px; /* Adjust as needed */
 }
 
 .menu-items a {
-    margin: 5px;
     padding: 10px;
-    background-color: #ccc;
-    border-radius: 5px;
     text-decoration: none;
     color: #333;
+}
+.menu-items > a:hover {
+    background-color: #d3d3d3;
+}
+/* Dropdown Button */
+.dropbtn {
+    color: black;
+    text-align: left;
+    padding: 10px;
+    background-color: #ffffff;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+}
+
+.dropdown {
+    position: relative;
+}
+/* Dropdown button on hover & focus */
+.dropbtn:hover {
+    background-color: #d3d3d3;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    min-width: 300px;
+    background-color: #ffffff;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.dropdown-show {
+    display: block;
+    animation: dropdownShow 0.3s ease forwards;
+}
+
+/* Animation class for hiding dropdown content */
+.dropdown-hide {
+    animation: dropdownHide 0.3s ease forwards;
+}
+.erasmus {
+    min-width: 600px;
+}
+.dropdown-content .dropdown-content {
+    display: none;
+    position: absolute; /* Position the nested dropdown to the right of its parent dropdown button */
+    top: 0;
+    left: 100%;
+    background-color: #ffffff;
+    min-width: 300px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+.dropdown-content.show {
+    display: inline-block;
+    opacity: 1; /* Change opacity to 1 when displayed */
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+    color: black;
+    background-color: #fff;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+    background-color: #ffffff;
+}
+.dropdown-icons {
+    transform: rotate(90deg);
 }
 .hero {
     width: 100%;
@@ -181,7 +261,21 @@
     padding: 20px 0;
     text-align: center;
 }
-
+.location-warpper {
+    height: 70dvh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.location-container {
+    margin: 30px 0;
+    width: 60%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: row;
+}
 @media screen and (max-width: 1400px) {
     .menu {
         margin: 0 5%;
@@ -211,6 +305,12 @@
         width: 100%;
         padding: 20px;
     }
+    .location-container {
+        width: 90%;
+    }
+    .location-warpper {
+        height: 80dvh;
+    }
 }
 @media screen and (max-width: 700px) {
     body {
@@ -224,6 +324,7 @@
         flex-direction: row;
         position: relative;
         min-height: 50px;
+        margin: 10px 0;
     }
     .navigator-container > a {
         width: calc(50% - 10px); /* Two elements per row with some spacing */
@@ -295,6 +396,33 @@
         margin-left: 20px;
         font-size: 14px;
     }
+    .dropdown {
+        width: 100%;
+    }
+    .dropbtn {
+        padding: 0px;
+        font-size: 14px;
+        margin-left: 20px;
+    }
+    .dropdown-content {
+        position: relative;
+        min-width: 100%;
+        box-shadow: none;
+        animation: expandMenu 0.3s forwards;
+    }
+    .dropdown-content > a {
+        font-size: 14px;
+        padding: 0;
+        margin-left: 20px;
+    }
+
+    .dropdown-content .dropdown-content {
+        position: relative;
+        min-width: 100%;
+        left: 0;
+        box-shadow: none;
+        animation: expandMenu 0.3s forwards;
+    }
     .hero {
         z-index: 1;
         height: 30dvh;
@@ -306,6 +434,12 @@
     }
     .news-label-container > a {
         display: none;
+    }
+    .map-wrapper {
+        display: none;
+    }
+    .location-info {
+        text-align: center;
     }
 }
 @keyframes expandMenu {
@@ -320,5 +454,27 @@
     100% {
         min-height: 50vh; /* End height */
         opacity: 1;
+    }
+}
+@keyframes dropdownShow {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Keyframes for hiding dropdown */
+@keyframes dropdownHide {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-10px);
     }
 }

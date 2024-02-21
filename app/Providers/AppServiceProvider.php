@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\Erasmus;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -19,6 +21,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+         View::composer('frontend_views.layout.layout', function ($view) {
+            $erasmus = Erasmus::all();
+            $view->with('erasmus', $erasmus);
+        });
     }
 }
