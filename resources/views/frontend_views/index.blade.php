@@ -1,6 +1,6 @@
 @extends('frontend_views.layout.layout')
 
-@section('title', 'Home Page')
+@section('title', 'Дома')
 
 
 @section('content')
@@ -51,17 +51,6 @@
         </div>
     </div>
 
-    <div class="location-warpper">
-        <div class="location-container">
-        <div class="map-wrapper">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2964.7146953236943!2d21.387743300000004!3d42.00639820000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1354147111727d33%3A0xb985a47630bbc8af!2sPetar%20Pop%20Arsov%20Elementary%20School!5e0!3m2!1ssr!2smk!4v1708513104578!5m2!1ssr!2smk" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-        </div>
-        <div class="location-info">
-            <p>Адреса на училиште</p>
-            <h2>ТРИФУН БУЗЕВ бр. 2</h2>
-            <p>Карпош IV - Скопје </p>
-        </div>
-        </div>
-    </div>
+    
     
 @endsection

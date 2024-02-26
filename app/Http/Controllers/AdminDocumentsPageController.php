@@ -20,4 +20,7 @@ class AdminDocumentsPageController extends Controller
         
         return view('admin_views.erasmus.edit_erasmus', compact('erasmus'));
     }
+    public function index_documents(){
+        return view('admin_views.documents.index');
+    }
 }
