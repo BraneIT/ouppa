@@ -90,7 +90,7 @@
                 <button class="dropbtn">РАСПОРЕДИ ▼</button>
                 <div class="dropdown-content">
                     <div class="dropdown">
-                        <button class="dropbtn">РАСПОРЕД НА НАСТАВАТА ▼</button>
+                        <button class="dropbtn">РАСПОРЕД НА НАСТАВАТА ▶</button>
                         <div class="dropdown-content">
                             <a href="">РАСПОРЕД НА ОДЕЛЕНСКА НАСТАВА</a>
                             <a href="">РАСПОРЕД НА ПРЕДМЕТНА НАСТАВА</a>
@@ -117,7 +117,7 @@
             </div>
         </div>
             <a href="#">ПРВАЧИЊА 2023/2024</a>
-            <a href="#">ЈАВНИ НАБАВКИ</a>
+            <a href="/gallery">ГАЛЕРИЈА</a>
             <a href="#">ФИНАНСИСКИ ДОКУМЕНТИ</a>
             <a href="#">КОНТАКТ</a>
             <a href="#">ИНФОРМАЦИИ ОД ЈАВЕН КАРАКТЕР</a>
@@ -127,8 +127,26 @@
         @yield('content')
     </div>
     <div class="footer">
-        <p>ОУ ПЕТАР ПОП АРСОВ ОПШТИНА КАРПОШ </p>
+        <div class="location-warpper">
+        <div class="location-container">
+        <div class="map-wrapper">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2964.7146953236943!2d21.387743300000004!3d42.00639820000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1354147111727d33%3A0xb985a47630bbc8af!2sPetar%20Pop%20Arsov%20Elementary%20School!5e0!3m2!1ssr!2smk!4v1708513104578!5m2!1ssr!2smk" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+        <div class="location-info">
+            <p>Адреса на училиште</p>
+            <h2>ТРИФУН БУЗЕВ бб</h2>
+            <p>Карпош IV - Скопје </p>
+        </div>
+        </div>
+    </div>
+        <p>Copyright © 2024 OOU "Petar Pop Arsov"</p>
     </div>
     <script src="{{ asset('assets/js/script.js') }}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- Include Bootstrap JS -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  
+
 </body>
 </html>

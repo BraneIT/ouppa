@@ -1,5 +1,9 @@
 console.log("linked");
 document.addEventListener("DOMContentLoaded", function () {
+    if (!document.querySelector(".slider")) {
+        return;
+    }
+
     const slides = document.querySelectorAll(".slider .slide");
     let currentIndex = 0;
 
@@ -132,3 +136,36 @@ document.addEventListener("click", function (event) {
         closeDropdownsAfterDelay();
     }
 });
+
+var images = [];
+var currentIndex = 0;
+
+function openModal(imageSrc, index) {
+    var modal = document.getElementById("myModal");
+    var modalImg = document.getElementById("modalImage");
+    modal.style.display = "block";
+    modalImg.src = imageSrc;
+    currentIndex = index;
+    images = document.querySelectorAll(".gallery-image");
+}
+
+function closeModal() {
+    var modal = document.getElementById("myModal");
+    modal.style.display = "none";
+}
+
+function nextImage() {
+    currentIndex++;
+    if (currentIndex >= images.length) {
+        currentIndex = 0;
+    }
+    document.getElementById("modalImage").src = images[currentIndex].src;
+}
+
+function prevImage() {
+    currentIndex--;
+    if (currentIndex < 0) {
+        currentIndex = images.length - 1;
+    }
+    document.getElementById("modalImage").src = images[currentIndex].src;
+}

@@ -55,8 +55,12 @@ Route::middleware('auth')->group(function(){
     Route::get('/admin/erasmus/edit/{id}', [AdminDocumentsPageController::class, 'edit_erasmus'])->name('erasmus.edit.show');
     Route::post('/admin/erasmus/edit/{id}', [DocumentsController::class, 'edit_erasmus'])->name('erasmus.update');
     Route::delete('/admin/erasmus/{id}', [DocumentsController::class, 'destroy_erasmus'])->name('erasmus.destroy');
+    
+    // Documents route
+    Route::get('/admin/documents', [AdminNewsPagesController::class, 'index_documents']);
 });
 
 // Frontend routes
 
 Route::get('/', [FrontendController::class, 'index']);
+Route::get('/gallery', [FrontendController::class, 'gallery']);
