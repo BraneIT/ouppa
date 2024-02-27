@@ -9,7 +9,7 @@ use App\Models\News;
 class FrontendController extends Controller
 {
     public function index(){
-        $news = News::all();
+        $news = News::paginate(6);
         return view('frontend_views.index', compact('news'));
     }
     public function gallery(){

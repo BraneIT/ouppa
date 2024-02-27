@@ -15,9 +15,9 @@
             <div class="menu-container">
                 <a href="/admin">Home</a>
                 <a href="/admin/news">News</a>    
-                <a href="/admin/gallery">Galery</a>
+                <a href="/admin/gallery">Gallery</a>
                 <a href="/admin/erasmus">Erasmus+</a>
-                <a href="/admin/documents">Erasmus+</a>
+                <a href="/admin/documents">Documents</a>
             </div>
         </nav>
 

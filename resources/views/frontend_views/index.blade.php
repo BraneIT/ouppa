@@ -38,7 +38,7 @@
             @foreach($news as $item)
                 <div class="news">
                     <div class="news-image-container">
-                        
+                        <img src="{{$item->image}}" alt="" class="news-images">
                     </div>
                     <div class="news-details">
                         <h3>{{ $item->title }}</h3>

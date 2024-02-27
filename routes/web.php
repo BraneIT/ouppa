@@ -57,7 +57,13 @@ Route::middleware('auth')->group(function(){
     Route::delete('/admin/erasmus/{id}', [DocumentsController::class, 'destroy_erasmus'])->name('erasmus.destroy');
     
     // Documents route
-    Route::get('/admin/documents', [AdminNewsPagesController::class, 'index_documents']);
+    Route::get('/admin/documents', [AdminDocumentsPageController::class, 'index_documents']);
+    Route::get('/admin/documents/add', [AdminDocumentsPageController::class, 'create_documents']);
+    Route::post('/admin/documents/add', [DocumentsController::class, 'storeDocuments'])->name('store.documents');
+    Route::get('/admin/documents/category/{id}', [AdminDocumentsPageController::class, 'documentsByCategories'])->name('documentsByCategories');
+    Route::get('/admin/documents/edit/{id}', [AdminDocumentsPageController::class, 'editDocuments']);
+    Route::post('/admin/documents/edit/{id}', [DocumentsController::class, 'updateDocuments'])->name('update.documents');
+    Route::delete('/admin/documents/{id}', [DocumentsController::class, 'destroyDocument'])->name('document.destroy');
 });
 
 // Frontend routes
