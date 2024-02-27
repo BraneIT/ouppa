@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Documents;
 use App\Models\Erasmus;
 use Illuminate\Http\Request;
 use App\Services\DocumentsService;
@@ -56,5 +57,37 @@ class DocumentsController extends Controller
         $erasmus->delete();
         
         return redirect('/admin/erasmus')->with('success', 'News item deleted successfully.');
+    }
+    public function storeDocuments(Request $request){
+        $validatedData = $request->validate([
+            'title'=> 'required',
+            'file' => 'required|file|mimes:pdf,doc,docx|max:2048',
+            'category_id' => 'required',
+            'year' => 'required'
+        ]);
+        $this->documentService->storeDocuments($validatedData);
+
+        return redirect('/admin/documents');
+    }
+    public function updateDocuments($id, Request $request){
+           $validatedData = $request->validate([
+            'title'=> 'required',
+            'category_id' => 'required',
+            'year' => 'required'
+        ]);
+        $this->documentService->updateDocument($id,$validatedData);
+
+        return redirect('admin/documents');
+    }
+    public function destroyDocument($id){
+        $document = Documents::findOrFail($id);
+        $documentPath = public_path($document->file);
+        if (File::exists($documentPath)) {
+            // Delete the image file from the public folder
+            File::delete($documentPath);
+        }
+
+        $document->delete(); 
+        return redirect('/admin/documents');
     }
 }
