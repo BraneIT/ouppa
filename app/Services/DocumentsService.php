@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\Erasmus;
 use App\Models\Documents;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
 
@@ -15,6 +16,7 @@ class DocumentsService{
         $erasmus = new Erasmus();
 
         $erasmus->name = $data['name'];
+        $erasmus->slug = Str::slug($erasmus->name);
         $erasmus->path = $documentPath;
         $erasmus->start_date = $data['start_date'];
         $erasmus->end_date = $data['end_date'];
@@ -55,7 +57,9 @@ class DocumentsService{
         $documentPath = $this->saveDocument($file);
         $document = new Documents();
 
+        
         $document->title = $data['title'];
+        $document->slug = Str::slug($document->title);
         $document->file = $documentPath;
         $document->category_id = $data['category_id'];
         $document->year = $data['year'];

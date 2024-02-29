@@ -51,12 +51,12 @@
             <div class="dropdown">
                 <button class="dropbtn">ДОКУМЕНТИ ▼</button>
                     <div class="dropdown-content">
-                                 <a href="#">СТАТУТ</a>
-                        <a href="#">ГОДИШНА ПРОГРАМА ЗА РАБОТА НА УЧИЛИШТЕТО И ГОДИШНИ И ПОЛУГОДИШНИ ИЗВЈЕШТАИ</a>
+                                 <a href="/statut">СТАТУТ</a>
+                        <a href="/godisna_programa">ГОДИШНА ПРОГРАМА ЗА РАБОТА НА УЧИЛИШТЕТО И ГОДИШНИ И ПОЛУГОДИШНИ ИЗВЈЕШТАИ</a>
                         <a href="#">РАЗВОЈНА ПРОГРАМА ЗА РАБОТА НА УЧИЛИШТЕТО</a>
                         <a href="#">ИЗВЈЕШТАИ ОД САМОЕВАЛУАЦИЈА</a>
                         <a href="#">ИНТЕГРАЛНА ИНСПЕКЦИЈА</a>
-                        <a href="#">ПЛАН/СКИЦА НА УЧИЛИШТЕТО</a>
+                        <a href="/skica">ПЛАН/СКИЦА НА УЧИЛИШТЕТО</a>
                         <a href="#">ПРАВИЛНИЦИ И ПРОПИСИ</a>
                     </div>
             </div>
@@ -111,14 +111,14 @@
             <button class="dropbtn">ЕРАЗМУС + ▼</button>
             <div class="dropdown-content  erasmus">
                 @foreach($erasmus as $item)
-                    <a href="#">{{ $item->name }}</a>
+                    <a href="/erasmus/{{$item->slug}}">{{ $item->name }}</a>
                     <!-- Adjust the href attribute as needed -->
                 @endforeach
             </div>
         </div>
             <a href="#">ПРВАЧИЊА 2023/2024</a>
             <a href="/gallery">ГАЛЕРИЈА</a>
-            <a href="#">ФИНАНСИСКИ ДОКУМЕНТИ</a>
+            <a href="/finansiski_dokumenti">ФИНАНСИСКИ ДОКУМЕНТИ</a>
             <a href="#">КОНТАКТ</a>
             <a href="#">ИНФОРМАЦИИ ОД ЈАВЕН КАРАКТЕР</a>
         </div>

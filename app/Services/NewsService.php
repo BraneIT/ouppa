@@ -7,20 +7,21 @@ class NewsService
 {
     public function createNews(array $data)
     {
-        // Validate input data if necessary
-        
+
+        $news = new News();
         // Upload image and get its path
-        $imagePath = $this->uploadImage($data['image']); // Assuming 'image' is the field name
+        if (isset($data['image'])) {
+        $imagePath = $this->uploadImage($data['image']);
+        $news->image = $imagePath;
+        } 
         
         // Create a new news item
-        $news = new News();
+        
         $news->title = $data['title'];
         $news->short_content = $data['short_content'];
         $news->content = $data['content'];
         $news->category_id = $data['category_id'];
-        $news->image = $imagePath; // Store the image path in the database
-        
-        // Additional properties assignment if any
+
         
         $news->save();
 

@@ -21,7 +21,7 @@ class LoginController extends Controller
             return redirect('/admin');
         }
         return back()->withErrors([
-            'login' => 'Invalid email or password.',
+            'login' => 'Invalid username or password.',
         ])->withInput($request->only('email'));
     }
     

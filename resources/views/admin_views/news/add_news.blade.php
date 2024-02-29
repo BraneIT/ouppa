@@ -31,7 +31,7 @@
                 </select>
             
                 <label for="image">Image</label>
-                <input type="file" class="form-control-file" id="file" name="image" required accept="image/*">
+                <input type="file" class="form-control-file" id="file" name="image" accept="image/*">
             
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>

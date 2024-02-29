@@ -70,3 +70,10 @@ Route::middleware('auth')->group(function(){
 
 Route::get('/', [FrontendController::class, 'index']);
 Route::get('/gallery', [FrontendController::class, 'gallery']);
+Route::get('/erasmus/{slug}', [FrontendController::class, 'show_erasmus']);
+Route::get('/statut', [FrontendController::class, 'statut']);
+Route::get('/finansiski_dokumenti', [FrontendController::class, 'finance']);
+Route::get('/finansiski_dokumenti/{year}', [FrontendController::class, 'show_finance']);
+Route::get('/finansiski_dokumenti/{year}/{slug}', [FrontendController::class, 'show_single_finance']);
+Route::get('/godisna_programa', [FrontendController::class, 'godisnaPrograma']);
+Route::get('/skica', [FrontendController::class, 'plan']);

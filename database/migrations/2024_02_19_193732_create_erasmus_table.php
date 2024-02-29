@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name', 255);
             $table->string('path', 255);
+            $table->string('slug')->unique();
             $table->string('start_date');
             $table->string('end_date');
             $table->timestamps();

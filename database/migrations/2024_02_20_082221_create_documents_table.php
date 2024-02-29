@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('file');
             $table->integer('category_id')->references('id')->on('document_categories');
+            $table->string('slug')->unique();
             $table->string('year');
             $table->timestamps();
         });
