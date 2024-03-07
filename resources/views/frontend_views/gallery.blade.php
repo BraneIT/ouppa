@@ -8,7 +8,7 @@
         <h1>Галерија</h1>
     </div>
 </div>    
-<div class="gallery">
+<div id="gallery">
     <div class="gallery-wrapper">
         @foreach($images as $item)
             <div class="image-container">

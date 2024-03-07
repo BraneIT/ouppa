@@ -8,14 +8,14 @@
 </div>
 <div class="form-container">
     <h2>Edit document</h2>
-    <form method="POST" enctype="multipart/form-data" action="{{route('update.documents', $document->id)}}">
+    <form method="POST" enctype="multipart/form-data" action="{{route('update.documents', ['category_id' => $document->category_id, 'id' => $document->id])}}">
         @csrf
-            
+          
         <label for="name">Name</label>
         <input type="text" class="form-control" id="name" name="title" value="{{ old('title', $document->title) }}" required>
             
         <label for="file">Select document (PDF or Word)</label>
-        <input type="file" class="form-control-file" id="file" name="file" accept="application/pdf,.doc,.docx" value="{{ old('file', $document->file) }}" >
+        <input type="file" class="form-control-file" id="file" name="file" accept="application/pdf,.doc,.docx" value="{{  $document->file }}" >
 
         <label for="category">Category</label>
         <select name="category_id" required>>

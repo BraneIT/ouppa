@@ -22,7 +22,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
          View::composer('frontend_views.layout.layout', function ($view) {
-            $erasmus = Erasmus::all();
+            $erasmus = Erasmus::select('name', 'slug')->get();
             $view->with('erasmus', $erasmus);
         });
     }

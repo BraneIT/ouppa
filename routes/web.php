@@ -9,6 +9,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\AdminNewsPagesController;
 use App\Http\Controllers\AdminGaleryPagesController;
+use App\Http\Controllers\ContactFormController;
 use App\Http\Controllers\DocumentsController;
 use App\Http\Controllers\FrontendController;
 use League\CommonMark\Node\Block\Document;
@@ -60,9 +61,9 @@ Route::middleware('auth')->group(function(){
     Route::get('/admin/documents', [AdminDocumentsPageController::class, 'index_documents']);
     Route::get('/admin/documents/add', [AdminDocumentsPageController::class, 'create_documents']);
     Route::post('/admin/documents/add', [DocumentsController::class, 'storeDocuments'])->name('store.documents');
-    Route::get('/admin/documents/category/{id}', [AdminDocumentsPageController::class, 'documentsByCategories'])->name('documentsByCategories');
-    Route::get('/admin/documents/edit/{id}', [AdminDocumentsPageController::class, 'editDocuments']);
-    Route::post('/admin/documents/edit/{id}', [DocumentsController::class, 'updateDocuments'])->name('update.documents');
+    Route::get('/admin/documents/category/{id}', [AdminDocumentsPageController::class, 'documentsByCategories'])->name('admin.documents.category');
+    Route::get('/admin/documents/edit/{category_id}/{id}', [AdminDocumentsPageController::class, 'editDocuments']);
+    Route::post('/admin/documents/edit/{category_id}/{id}', [DocumentsController::class, 'updateDocuments'])->name('update.documents');
     Route::delete('/admin/documents/{id}', [DocumentsController::class, 'destroyDocument'])->name('document.destroy');
 });
 
@@ -77,3 +78,11 @@ Route::get('/finansiski_dokumenti/{year}', [FrontendController::class, 'show_fin
 Route::get('/finansiski_dokumenti/{year}/{slug}', [FrontendController::class, 'show_single_finance']);
 Route::get('/godisna_programa', [FrontendController::class, 'godisnaPrograma']);
 Route::get('/skica', [FrontendController::class, 'plan']);
+Route::get('/godisna_programa_za_rad_na_učilište_i_godišnji_i_polugodišnji izvestaji/{year}/{slug}', [FrontendController::class, 'show_single_finance']);
+Route::get('/razvojna_programa', [FrontendController::class, 'razvojnaPrograma']);
+Route::get('/integralna_inspekcija', [FrontendController::class, 'integralnaInspekcija']);
+Route::get('/izvestaj_od_samoevaluacija', [FrontendController::class, 'evaluacija']);
+Route::get('/pravilnici_i_propisi', [FrontendController::class, 'regulations']);
+Route::get('/pravilnici_i_propisi/{slug}', [FrontendController::class, 'showRegulations']);
+Route::get('/kontakt', [FrontendController::class, 'showContact']);
+Route::post('/kontakt', [ContactFormController::class, 'sendEmail'])->name('contact.send');

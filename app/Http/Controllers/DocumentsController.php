@@ -67,17 +67,20 @@ class DocumentsController extends Controller
         ]);
         $this->documentService->storeDocuments($validatedData);
 
-        return redirect('/admin/documents');
+        return redirect()->route('admin.documents.category', ['id' => $validatedData['category_id']]);
     }
     public function updateDocuments($id, Request $request){
-           $validatedData = $request->validate([
+        $id = $request->route('id');
+        $validatedData = $request->validate([
             'title'=> 'required',
             'category_id' => 'required',
             'year' => 'required'
         ]);
-        $this->documentService->updateDocument($id,$validatedData);
+        // $validatedData['category_id'] = $request->category_id;
+        $this->documentService->updateDocument($id, $validatedData, $request);
 
-        return redirect('admin/documents');
+        //Redirect back to a specific route or page
+        return redirect()->route('admin.documents.category', ['id' => $validatedData['category_id']]);
     }
     public function destroyDocument($id){
         $document = Documents::findOrFail($id);

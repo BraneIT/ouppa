@@ -62,7 +62,9 @@ dropdownBtns.forEach(function (dropdownBtn) {
 // Function to toggle dropdown content visibility with animation
 function toggleDropdownVisibility(dropdownContent) {
     if (dropdownContent.style.display === "block") {
-        dropdownContent.style.display = "none";
+        setTimeout(function () {
+            dropdownContent.style.display = "none"; // Remove display property
+        }, 50);
         dropdownContent.classList.remove("dropdown-show"); // Remove animation class
         dropdownContent.classList.add("dropdown-hide"); // Add animation class
     } else {
@@ -88,7 +90,7 @@ function closeAllDropdowns(currentBtn) {
         }
     });
 }
-
+console.log(window.screen.width);
 if (window.screen.width > 700) {
     // Hide dropdowns when user clicks outside any dropdown button or content
     let timer;
@@ -153,4 +155,37 @@ function openModal(imageSrc, index) {
 function closeModal() {
     var modal = document.getElementById("myModal");
     modal.style.display = "none";
+}
+
+// const observer = new IntersectionObserver((entries) => {
+//     entries.forEach((entry) => {
+//         if (entry.isIntersecting) {
+//             entry.target.classList.add("show");
+//         }
+//     });
+// });
+
+// const hiddenElements = document.querySelectorAll(".hidden");
+// hiddenElements.forEach((el) => observer.observe(el));
+
+const observer = new IntersectionObserver(
+    (entries) => {
+        entries.forEach((entry) => {
+            if (entry.boundingClientRect.top >= 200 && entry.isIntersecting) {
+                entry.target.classList.add("show");
+                observer.unobserve(entry.target);
+            } else {
+                // entry.target.style.opacity = 1;
+            }
+        });
+    },
+    { threshold: [0] }
+);
+
+const hiddenElements = document.querySelectorAll(".hidden");
+hiddenElements.forEach((el) => observer.observe(el));
+
+function openPDF(pdfUrl) {
+    // Open the PDF file in a new window
+    window.open(pdfUrl, "_blank");
 }
