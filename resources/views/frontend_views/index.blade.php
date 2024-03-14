@@ -9,7 +9,7 @@
     <section class="hidden" id="hero">
         
         
-        <img src="{{ asset('assets/images/skola-min.png') }}" alt="Slide 1">
+        <img src="{{ asset('assets/images/skola-min.webp') }}" alt="Slide 1">
         <div class="hero-info">
             <p>Добродојдовте на сајт</p>
             <h1>Петар Поп Арсов</h1>
@@ -20,10 +20,10 @@
     <section id="navigator-wrapper" class="hidden">
         <div class="navigator-container">
             
-            <a href=""><x-tni-school class="icons"/> НАСТАВА</a> 
+            {{-- <a href=""><x-tni-school class="icons"/> НАСТАВА</a> 
             <a href=""><x-monoicon-document class="icons"/> ДОКУМЕНТИ</a>
             <a href=""><x-antdesign-project-o class="icons"/>ПРОЕКТИ</a>
-            <a href=""><x-entypo-news class="icons"/>НОВОСТИ</a>
+            <a href=""><x-entypo-news class="icons"/>НОВОСТИ</a> --}}
         </div>
     </section>
     <section id="news-wrapper" class="hidden">

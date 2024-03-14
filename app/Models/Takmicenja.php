@@ -9,5 +9,5 @@ class Takmicenja extends Model
 {
     use HasFactory;
     protected $table = 'takmicenja';
-    protected $fillable = ['title', 'file', 'slug', 'year'];
+    protected $fillable = ['title', 'file', 'slug', 'year', 'end_year'];
 }

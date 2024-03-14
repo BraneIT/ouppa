@@ -97,15 +97,19 @@ body {
 }
 
 .form-container > form > input {
-    width: 80%;
+    width: 70%;
     padding: 5px 2px;
     text-align: center;
     outline: none;
 }
 .form-container > form > textarea {
-    width: 80%;
+    width: 70%;
     padding: 10px 5px;
     outline: none;
+}
+.form-container > form > label {
+    padding: 8px;
+    font-size: 16px;
 }
 .form-control-file {
     text-align: center;
@@ -198,6 +202,80 @@ body {
     text-decoration: none;
     color: black;
 }
+.ck-editor__editable {
+    min-height: 20dvh;
+    max-height: 800px;
+    min-width: 700px;
+}
+/*Toolbar*/
+.ck-editor__top {
+    min-width: 800px;
+}
+
+.ck-editor__editable_inline:not(.ck-comment__input *) {
+    height: 15vh;
+
+    overflow-y: auto;
+}
+.button {
+    padding: 8px;
+    border: none;
+    width: 20%;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.green-button {
+    background-color: green;
+    color: white;
+}
+.blue-button {
+    background-color: lightblue;
+    color: white;
+}
+.red-button {
+    background-color: red;
+    color: white;
+}
+.gallery-add {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.button-gallery {
+    width: 50%;
+    padding: 8px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+}
+
+.error-field {
+    color: red;
+    margin: 0;
+}
+
+#galleryForm {
+    width: 50%;
+    height: 50dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.gallery-add > label {
+    padding: 8px;
+}
+
+.form-delete {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+}
+
 @media screen and (max-width: 1400px) {
     .logo-container {
         width: 70%;
@@ -210,5 +288,13 @@ body {
     }
     #file {
         width: 30%;
+    }
+    .ck-editor__editable {
+        min-height: 20dvh;
+        max-height: 800px;
+        min-width: 40px;
+    }
+    .ck-editor__top {
+        min-width: 400px;
     }
 }

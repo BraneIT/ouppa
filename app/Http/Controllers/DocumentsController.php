@@ -63,11 +63,12 @@ class DocumentsController extends Controller
             'title'=> 'required',
             'file' => 'required|file|mimes:pdf,doc,docx|max:2048',
             'category_id' => 'required',
-            'year' => 'required'
+            'year' => 'required',
+            'end_year' => 'nullable'
         ]);
         $this->documentService->storeDocuments($validatedData);
-
-        return redirect()->route('admin.documents.category', ['id' => $validatedData['category_id']]);
+        
+        // return redirect()->route('admin.documents.category', ['id' => $validatedData['category_id']]);
     }
     public function updateDocuments($id, Request $request){
         $id = $request->route('id');

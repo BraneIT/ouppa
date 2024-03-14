@@ -10,10 +10,10 @@
     @foreach($gallery as $image)
         <div class="image-container">
             <img src="{{ asset($image->image) }}" alt="Image">
-            <form method="POST" action="{{ route('gallery.destroy', $image->id) }}" >
+            <form method="POST" class="form-delete" action="{{ route('gallery.destroy', $image->id) }}" >
                 @csrf
                 @method('DELETE')
-                <button type="submit">Delete</button>
+                <button type="submit" class="button-gallery red-button">Delete</button>
             </form>
         </div>
     @endforeach

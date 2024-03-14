@@ -9,5 +9,5 @@ class IzvjestajOdSamoevaluacija extends Model
 {
     use HasFactory;
     protected $table = 'izvjestaji_od_samoevaluacija';
-    protected $fillable = ['title', 'file', 'slug', 'year'];
+    protected $fillable = ['title', 'file', 'slug', 'year', 'end_year'];
 }

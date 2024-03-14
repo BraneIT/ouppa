@@ -9,5 +9,5 @@ class RazvojnaPrograma extends Model
 {
     use HasFactory;
     protected $table = 'razvojna_programa';
-    protected $fillable = ['title', 'file', 'slug', 'year'];
+    protected $fillable = ['title', 'file', 'slug', 'year', 'end_year'];
 }

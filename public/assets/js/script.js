@@ -175,7 +175,7 @@ const observer = new IntersectionObserver(
                 entry.target.classList.add("show");
                 observer.unobserve(entry.target);
             } else {
-                // entry.target.style.opacity = 1;
+                entry.target.style.opacity = 1;
             }
         });
     },

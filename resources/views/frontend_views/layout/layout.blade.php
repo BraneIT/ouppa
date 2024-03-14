@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('assets/css/frontend_css/style.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="icon" type="image/png" href="{{ asset('images/logo.png') }}">
      <title>@yield('title')</title>
 </head>
 <body>
@@ -16,7 +17,7 @@
             
         <div class="logo">
             <div class="logo-container">
-                <img src="{{ asset('images/logo.png') }}" alt="Example Image">
+                <img src="{{ asset('images/fav-icon.png') }}" alt="Example Image">
             </div>
             <div class="logo-label">
                 <p>ОСНОВНО УЧИЛИШТЕ</p>
@@ -30,6 +31,7 @@
                 <span class="line"></span>
             </button>
         <div class="menu-items">
+            
             <a href="/">ДОМА </a>
             <div class="dropdown">
             <button class="dropbtn">ЗА НАС <i class="fa-solid fa-angle-down"></i></button> 
@@ -59,6 +61,7 @@
                         <a href="integralna_inspekcija">ИНТЕГРАЛНА ИНСПЕКЦИЈА</a>
                         <a href="/skica">ПЛАН/СКИЦА НА УЧИЛИШТЕТО</a>
                         <a href="/pravilnici_i_propisi">ПРАВИЛНИЦИ И ПРОПИСИ</a>
+                        <a href="/finansiski_dokumenti">ФИНАНСИСКИ ДОКУМЕНТИ</a>
                     </div>
             </div>
             <div class="dropdown">
@@ -67,7 +70,7 @@
                     <div class="dropdown">
                         <button class="dropbtn">ОДЕЛЕНИЈА <i class="fa-solid fa-angle-right"></i></button>
                         <div class="dropdown-content">
-                            <a href="">РАКОВОДИТЕЛИ НА ПАРАЛЕЛКИ</a>
+                            <a href="/rakovoditeli_na_paralelki">РАКОВОДИТЕЛИ НА ПАРАЛЕЛКИ</a>
                         </div>
                     </div>
                     <a href="">УЧЕНИЧКИ КЛУБОВИ</a>
@@ -75,12 +78,18 @@
                 </div>
             </div>
             <div class="dropdown">
-                <button class="dropbtn">НАСТАВА <i class="fa-solid fa-angle-down"></i><div class="caret"><x-phosphor-caret-down-thin class="caret-icons"/></div></button>
+                <button class="dropbtn">НАСТАВА <i class="fa-solid fa-angle-down"></i></button>
                 <div class="dropdown-content">
                     <a href="">НАСТАВНИ ПРОГРАМИ ПО ГЕНЕРАЦИИ И ПРЕДМЕТИ И ЗАКОНИ</a>
                     <a href="">ПЛАНИРАЊА ЗА ОЦЕНУВАЊЕ</a>
                     <div class="dropdown">
                         <button class="dropbtn">ДОДАТНА НАСТАВА ▶</button>
+                        <div class="dropdown-content">
+                            <a href="#">ДОДАТНА ОДЕЉЕНСКА НАСТАВА</a>
+                            <a href="#">ДОДАТНА ПРЕДМЕТНА НАСТАВА</a>
+                            <a href="#">ДОПУНСКА ОДЕЉЕНСКА НАСТАВА</a>
+                            <a href="#">ДОПУНСКА ПРЕДМЕТНА НАСТАВА</a>
+                        </div>
                     </div>
                     <a href="">ВОННАСТАВНИ АКТИВНОСТИ</a>
                     <a href="">БИБЛИОТЕКА</a>
@@ -104,7 +113,15 @@
             <a href="#">ВРАБОТЕНИ <i class="fa-solid fa-angle-down"></i></a>
             <a href="#">НОВОСТИ</a>
             <a href="#">МЕЃУЕТНИЧКА ИНТЕГРАЦИЈА ВО ОБРАЗОВАНИЕТО</a>
-            <a href="#">УЧЕСТВО НА НАТПРЕВАРИ И ОСВЕНИ НАГРАДИ <i class="fa-solid fa-angle-down"></i></a>
+            <div class="dropdown">
+            <button class="dropbtn">УЧЕСТВО НА НАТПРЕВАРИ И ОСВЕНИ НАГРАДИ <i class="fa-solid fa-angle-down"></i></button>
+                <div class="dropdown-content  erasmus">
+                    
+                   @foreach ($competitions as $year)
+    <a href="ucestvo_na_natprevari_i_ostali_nagradi/{{ $year. "-" . $year+1 }}">УЧЕСТВО НА НАТПРЕВАРИ И ОСТАЛИ НАГРАДИ {{ $year }} / {{ $year+1 }}</a>
+@endforeach
+                </div>
+            </div>
             <a href="#">ПРОЕКТИ <i class="fa-solid fa-angle-down"></i></a>
             <a href="#">АКТИВНОСТИ</a>
             <a href="#">ЕТВИНИНГ <i class="fa-solid fa-angle-down"></i></a>
@@ -119,7 +136,7 @@
         </div>
             <a href="#">ПРВАЧИЊА 2023/2024</a>
             <a href="/gallery">ГАЛЕРИЈА</a>
-            <a href="/finansiski_dokumenti">ФИНАНСИСКИ ДОКУМЕНТИ</a>
+            
             <a href="/kontakt">КОНТАКТ</a>
             <a href="#">ИНФОРМАЦИИ ОД ЈАВЕН КАРАКТЕР</a>
         </div>
@@ -127,7 +144,7 @@
     <div class="content">
         @yield('content')
     </div>
-    <div class="footer">
+    <div class="footer hidden">
         <div class="location-warpper">
             <div class="location-container">
                 <div class="map-wrapper">

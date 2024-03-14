@@ -9,5 +9,5 @@ class IntegralnaInspekcija extends Model
 {
     use HasFactory;
     protected $table = 'integralna_inspekcija';
-    protected $fillable = ['title', 'file', 'slug', 'year'];
+    protected $fillable = ['title', 'file', 'slug', 'year', 'end_year'];
 }

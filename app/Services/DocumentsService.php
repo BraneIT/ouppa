@@ -58,10 +58,13 @@ class DocumentsService{
     }
 
     function storeDocuments(array $data){
+       
+
+        var_dump($data);
         $categoryId = $data['category_id'];
         switch ($categoryId) {
             case 1:
-                $document = new FinansiskiDokumenti();
+                $document =new FinansiskiDokumenti;
                 break;
             case 2:
                 $document = new GodisnjiIzvjestaji();
@@ -90,11 +93,14 @@ class DocumentsService{
         $document->file = $this->saveDocument($data['file']);
         $document->category_id = $data['category_id'];
         $document->year = $data['year'];
-        
+        var_dump(isset($data['end_year']));
+        if(isset($data['end_year'])){
+            $document->end_year = $data['end_year'];
+        }
         // Save the document
-        $document->save();
-        
-        return $document;
+        // $document->save();
+        // var_dump($document);
+        // return $document;
     }
 
     public function updateDocument($id, array $data, Request $request){

@@ -18,22 +18,19 @@
                 <textarea class="form-control" id="short_content" name="short_content" rows="3">{{ old('short_content', $news->short_content) }}</textarea>
             
             
+                {{-- <label for="content">Content</label>
+                <textarea class="form-control" id="content" name="content" rows="6" ></textarea> --}}
                 <label for="content">Content</label>
-                <textarea class="form-control" id="content" name="content" rows="6" >{{ old('content', $news->content) }}</textarea>
+                <textarea class="form-control" id="editor" name="content" >{{ old('content', $news->content) }}</textarea>
            
             
-                <label for="category_id">Category</label>
-                <select class="form-control" id="category_id" name="category_id">
-                    <option value="">Select Category</option>
-                    @foreach($categories as $category)
-                        <option value="{{ $category->id }}" {{ old('category_id', $news->category_id) == $category->id ? 'selected' : '' }}>{{ $category->name }}</option>
-                    @endforeach
-                </select>
-            
+                
                 <label for="image">Image</label>
-                <input type="file" class="form-control-file" id="image" name="image" accept="image/*"  value="{{ old('image', $news->image) }}">
+                <input type="file" class="form-control-file" id="image" name="image" accept="image/*" style="display: none;"  value="{{ old('image', $news->image) }}">
+                <button type="button" id="imageButton" class="blue-button button">Choose Image</button>
+               
             
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="green-button button">Submit</button>
         </form>
     </div>
 @endsection

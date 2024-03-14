@@ -7,10 +7,16 @@ use App\Models\Erasmus;
 use App\Models\Gallery;
 use App\Models\Category;
 use App\Models\Documents;
+use App\Models\Takmicenja;
+use App\Models\Regulations;
 use Illuminate\Http\Request;
 use App\Models\DocumentCategories;
-use App\Models\Regulations;
+use App\Models\GodisnjiIzvjestaji;
 use App\Services\DocumentsService;
+use App\Models\FinansiskiDokumenti;
+use App\Models\IntegralnaInspekcija;
+use App\Models\IzvjestajOdSamoevaluacija;
+use App\Models\RazvojnaPrograma;
 
 class FrontendController extends Controller
 {   
@@ -18,7 +24,7 @@ class FrontendController extends Controller
     public function index()
     {
         // Fetch news and galleries separately but simultaneously
-        $news = News::take(6)->get();
+        $news = News::latest()->take(6)->get();
         $galleryQuery = Gallery::take(5)->get();
 
         // Execute both queries simultaneously
@@ -42,7 +48,7 @@ class FrontendController extends Controller
         return view('frontend_views.documents.statut');
     }
     public function finance(){
-        $data = Documents::where('category_id', 1)
+        $data = FinansiskiDokumenti::where('category_id', 1)
             ->orderBy('year', 'desc')
             ->get();
 
@@ -62,22 +68,17 @@ class FrontendController extends Controller
     }
 
     public function godisnaPrograma(){
-        $data = Documents::where('category_id', 2)
-            ->orderBy('year', 'desc')
-            ->get();
-
-        $documents = $data;
-        $uniqueYears = $data->pluck('year')->unique()->toArray();
+        
+        $documents = GodisnjiIzvjestaji::orderBy('year', 'desc')->get();
+        $uniqueYears = $documents->pluck('year')->unique()->toArray();
         return view('frontend_views.documents.godisna_programa', compact('documents', 'uniqueYears'));
     }
     public function razvojnaPrograma(){
-        $documents = Documents::where('category_id', 3)->get();
+        $documents = RazvojnaPrograma::select('year', 'slug', 'title')->get();
         return view('frontend_views.documents.razvojna_programa', compact('documents'));
     }
     public function integralnaInspekcija(){
-        $data = Documents::where('category_id', 5)
-            ->orderBy('year', 'desc')
-            ->get();
+        $data = IntegralnaInspekcija::select('year', 'slug', 'title')->get();
 
         $documents = $data;
         $uniqueYears = $data->pluck('year')->unique()->toArray();
@@ -87,24 +88,32 @@ class FrontendController extends Controller
         return view('frontend_views.documents.plan');
     }
     public function evaluacija(){
-        $data = Documents::where('category_id', 4)
-            ->orderBy('year', 'desc')
-            ->get();
-
+        $data = IzvjestajOdSamoevaluacija::select('year', 'slug', 'title')->get();
+            
         $documents = $data;
         $uniqueYears = $data->pluck('year')->unique()->toArray();
         return view('frontend_views.documents.izvjestaj_od_samoevaluacija', compact('documents', 'uniqueYears'));
     }
     public function regulations(){
-        $regulations = Regulations::all();
+        $regulations = Regulations::select('name', 'slug')->get();
         return view('frontend_views.documents.regulations', compact('regulations'));
     }
     public function showRegulations($slug){
-        $regulation = Regulations::where('slug', $slug)->firstOrFail();
+        $regulation = Regulations::where('slug', $slug)->first();
         return view('frontend_views.documents.show_regulations', compact('regulation'));
+    }
+    public function rakovoditeljiNaParalelki(){
+        return view('frontend_views.students.rukovoditelji_na_paralelki');
     }
     public function showContact(){
         return view('frontend_views.contact');
     }
+    public function showCompetitions()  {
+        $competitions = Takmicenja::select('year', 'slug', 'title')->get();
+         $uniqueYears = $competitions->pluck('year')->unique()->toArray();
+        return view('frontend_views.natpravari', compact('competitions', 'uniqueYears'));
+        
+    }
+    
 
 }

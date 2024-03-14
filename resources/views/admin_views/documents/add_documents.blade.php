@@ -13,10 +13,14 @@
         @csrf
             
         <label for="name">Name</label>
-        <input type="text" class="form-control" id="name" name="title" required>
+        <input type="text" class="form-control" id="documents-title" name="title" required>
             
-        <label for="file">Select document (PDF or Word)</label>
-        <input type="file" class="form-control-file" id="file" name="file" accept="application/pdf,.doc,.docx" required>
+        <input type="file" class="form-control-file" id="document" name="file" accept="application/pdf,.doc,.docx" style="display: none;" required>
+        
+        <button type="button" id="documentButton" class="red-button button">Choose document</button>
+        
+                
+                
 
         <label for="category">Category</label>
         <select name="category_id" required class="category">
@@ -25,14 +29,26 @@
                 <option value="{{ $category->id }}">{{ $category->name }}</option>
             @endforeach
         </select>
-            
-        <select name="year" id="" required class="year">
+        <label>Start year</label>
+        <select name="year" id="year" required class="year">
             <option value="">Select Year</option>
              @for ($year = 2016; $year <= 2030; $year++)
                 <option value="{{ $year }}">{{ $year }}</option>
             @endfor
         </select>
-        <button type="submit" class="btn btn-primary">Submit</button>
+     
+        
+            <label for="end_year">Year of end</label>
+           
+            <select name="end_year" id="" class="end-year">
+                <option value="">Select Year</option>
+                @for ($year = 2016; $year <= 2030; $year++)
+                    <option value="{{ $year }}">{{ $year }}</option>
+                @endfor
+            </select>
+      
+
+        <button type="submit" id="submit-documents" class="button red-button">Submit</button>
     </form>
 </div>
 @endsection

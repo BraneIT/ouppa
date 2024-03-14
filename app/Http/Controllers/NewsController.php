@@ -21,7 +21,6 @@ class NewsController extends Controller
             'title' => 'required|string|max:255',
             'short_content' => 'required|string|max:255',
             'content' => 'required|string',
-            'category_id' => 'required|integer',
             'image' => 'image|max:2048',
         ]);
 

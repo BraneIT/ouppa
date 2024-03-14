@@ -1,18 +1,19 @@
 <?php
 
-use App\Http\Controllers\AdminDocumentsPageController;
 use App\Models\News;
+use Laravel\Telescope\Telescope;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\LoginController;
+use League\CommonMark\Node\Block\Document;
 use App\Http\Controllers\GalleryController;
+use App\Http\Controllers\FrontendController;
+use App\Http\Controllers\DocumentsController;
+use App\Http\Controllers\ContactFormController;
 use App\Http\Controllers\AdminNewsPagesController;
 use App\Http\Controllers\AdminGaleryPagesController;
-use App\Http\Controllers\ContactFormController;
-use App\Http\Controllers\DocumentsController;
-use App\Http\Controllers\FrontendController;
-use League\CommonMark\Node\Block\Document;
+use App\Http\Controllers\AdminDocumentsPageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -84,5 +85,9 @@ Route::get('/integralna_inspekcija', [FrontendController::class, 'integralnaInsp
 Route::get('/izvestaj_od_samoevaluacija', [FrontendController::class, 'evaluacija']);
 Route::get('/pravilnici_i_propisi', [FrontendController::class, 'regulations']);
 Route::get('/pravilnici_i_propisi/{slug}', [FrontendController::class, 'showRegulations']);
+Route::get('ucestvo_na_natprevari_i_ostali_nagradi/{year}', [FrontendController::class, 'showCompetitions']);
+Route::get('ucestvo_na_natprevari_i_ostali_nagradi/{year}/{slug}', [FrontendController::class, 'show_single_finance']);
+Route::get('/rakovoditeli_na_paralelki', [FrontendController::class, 'rakovoditeljiNaParalelki']);
 Route::get('/kontakt', [FrontendController::class, 'showContact']);
 Route::post('/kontakt', [ContactFormController::class, 'sendEmail'])->name('contact.send');
+

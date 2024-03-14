@@ -2,6 +2,7 @@
 
 namespace App\Services;
 use App\Models\News;
+use Intervention\Image\Facades\Image;
 
 class NewsService
 {
@@ -20,7 +21,6 @@ class NewsService
         $news->title = $data['title'];
         $news->short_content = $data['short_content'];
         $news->content = $data['content'];
-        $news->category_id = $data['category_id'];
 
         
         $news->save();
@@ -31,7 +31,10 @@ class NewsService
     {
         $news = News::findOrFail($id);
 
-        // Update only the fields that are provided in the data
+        if (isset($data['image'])) {
+            $data['image'] = $this->uploadImage($data['image']);
+        }
+        
         $news->fill($data)->save();
 
         return $news;
@@ -40,8 +43,10 @@ class NewsService
     private function uploadImage($image)
     {
         // Handle image upload and storage, return the image path
-        $imageName = time() . '.' . $image->getClientOriginalExtension();
-        $image->move(public_path('images/news/'), $imageName);
+         $originalName = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME);
+        $imageName = $originalName . '_' . time() . '.webp';
+        $optimizedImage = Image::make($image)->encode('webp', 50);
+        $optimizedImage->save(public_path('images/news') . '/' . $imageName);
         return 'images/news/' . $imageName;
     }
 

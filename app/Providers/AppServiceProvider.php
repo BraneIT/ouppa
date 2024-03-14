@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Erasmus;
+use App\Models\Takmicenja;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -23,7 +24,12 @@ class AppServiceProvider extends ServiceProvider
     {
          View::composer('frontend_views.layout.layout', function ($view) {
             $erasmus = Erasmus::select('name', 'slug')->get();
-            $view->with('erasmus', $erasmus);
+            $competitions = Takmicenja::distinct()->pluck('year')->toArray();
+            $view->with([
+                'erasmus' => $erasmus,
+                'competitions' => $competitions
+            ]);
+
         });
     }
 }

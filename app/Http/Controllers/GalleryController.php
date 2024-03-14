@@ -7,6 +7,9 @@ use App\Models\Gallery;
 use Illuminate\Http\Request;
 use App\Services\GalleryService;
 use Illuminate\Support\Facades\File;
+use Intervention\Image\Facades\Image;
+
+
 
 class GalleryController extends Controller
 {
@@ -16,15 +19,25 @@ class GalleryController extends Controller
     {
         $this->galleryService = $galleryService;
     }
-    public function store(Request $request){
+    public function store(Request $request)
+{
     $validate = $request->validate([
-        'image'=> 'required|image|max:2048',
+        'image' => 'required|image|max:8300',
+    ],
+    [   'image.required' => 'The image field is required.',
+        'image.image' => 'The file must be an image.',
+        'image.max' => 'The image size must not exceed 8 MB.',
     ]);
 
-    $imageUrl = $this->galleryService->storeImage($validate['image']); // Get the image URL
-    Gallery::create(['image' => $imageUrl]); // Save the image URL to the database
+    // Store the original image
+    $imageUrl = $this->galleryService->storeImage($validate['image']);
+
+
+    // Save the image URL to the database
+    Gallery::create(['image' => $imageUrl]);
+
     return redirect('/admin/gallery');
-    }
+}
       public function destroy($id)
     {
         // Find the image by ID
