@@ -13,20 +13,13 @@
             
                 <label for="title">Title</label>
                 <input type="text" class="form-control" id="title" name="title" required>
-                
-            
-            
+         
                 <label for="short_content">Short Content</label>
                 <textarea class="form-control" id="short_content" name="short_content" rows="3" required></textarea>
-                
-            
-            
+  
                 <label for="content">Content</label>
                 <textarea class="form-control" id="editor" name="content" ></textarea>
-                
 
-                
-            
                 <label for="image">Image</label>
                 <input type="file" class="form-control-file" id="image" name="image" accept="image/*" style="display: none;">
                 <button type="button" id="imageButton" class="blue-button button">Choose Image</button>

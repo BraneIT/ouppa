@@ -12,20 +12,20 @@
         <img src="{{ asset('assets/images/skola-min.webp') }}" alt="Slide 1">
         <div class="hero-info">
             <p>Добродојдовте на сајт</p>
-            <h1>Петар Поп Арсов</h1>
+            <h1>ООУ "Петар Поп Арсов"</h1>
+            <p>Општина Карпош</p>
+            <p>Повеке од 50 години традициjа!</p>
         </div>   
             
         
     </section>
-    <section id="navigator-wrapper" class="hidden">
-        <div class="navigator-container">
-            
-            {{-- <a href=""><x-tni-school class="icons"/> НАСТАВА</a> 
-            <a href=""><x-monoicon-document class="icons"/> ДОКУМЕНТИ</a>
-            <a href=""><x-antdesign-project-o class="icons"/>ПРОЕКТИ</a>
-            <a href=""><x-entypo-news class="icons"/>НОВОСТИ</a> --}}
+    <section id="message-wrapper" class="hidden">
+        <div class="message-container">
+            <h1>"Образованието е најмоќното оружје што можете да го употребите за да го промените светот" </h1>
+            <p>Нелсон Мандела</p>
         </div>
     </section>
+   
     <section id="news-wrapper" class="hidden">
         <div class="news-label-container">
             <h1>НОВОСТИ</h1>
@@ -37,7 +37,7 @@
                 <div class="news">
                     <div class="news-image-container">
                         @if($item->image === "")
-                            <img src="{{ asset('images/logo.png') }}" class="default-image">
+                            <img src="{{ asset('assets/images/logo.png') }}" class="default-image">
                         @else
                             <img src="{{$item->image}}" alt="" class="news-images">
                         @endif
@@ -57,7 +57,7 @@
                     </div>
                 </div>
             @endforeach
-            .<a href="" class="all-news-phone">
+            <a href="" class="all-news-phone">
             Види ги сите новости</a>
         </div>
     </section>

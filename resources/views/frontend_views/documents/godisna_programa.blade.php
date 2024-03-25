@@ -10,22 +10,114 @@
     </div>
 </div>  
 
+
 <div class="erasmus-wrapper">
-@foreach($uniqueYears as $year)
+    @if(sizeof($documents)==0)
+        <div class="documents-container">     
+            <p>Тренутно нема објављених докумената</p>
+        </div>
+     @else 
+   <?php $lastYear = null;
+   $endYear = null;
+   $lastYearForEndYears = null;?>
     <div class="documents-container">
-        
-        
-        <div class="year-container"><h1>{{$year}}/{{$year+1}}</h1></div>
-         @foreach($documents as $item )
-         @if($item->year === $year)
-        
-            <a href="godisna_programa_za_rad_na_učilište_i_godišnji_i_polugodišnji izvestaji/{{$item->year}}/{{$item->slug}}">{{$item->title}} {{ $item->year }}</a>
-            
-        
+        @foreach ($documents as $item)
+        {{ var_dump($lastYear) }}
+        @if($item->end_year !== NULL)
+            @if ($lastYear !== $item->year || $endYear !== $item->end_year)
+                <div class="year-container"><h1>{{$item->year}}/{{$item->end_year}}</h1></div>
+                <a href="godisna_programa_za_rad_na_učilište_i_godišnji_i_polugodišnji izvestaji/{{ $item->category_id }}/{{$item->year}} /{{$item->slug}}">{{$item->title}} </a>
+                <?php $lastYearForEndYears = $item->year;
+                     ?>
+            @else
+
+                <a href="godisna_programa_za_rad_na_učilište_i_godišnji_i_polugodišnji izvestaji/{{ $item->category_id }}/{{$item->year}} /{{$item->slug}}">{{$item->title}} </a>
+                <?php $lastYearForEndYears = $item->year;
+                    var_dump($lastYearForEndYears); ?>
+            @endif
+        @else
+        @if ($lastYear != $item->year && $item->end_year == NULL)
+                    <div class="year-container"><h1>{{$item->year}}</h1></div>
+                    <a href="godisna_programa_za_rad_na_učilište_i_godišnji_i_polugodišnji izvestaji/{{ $item->category_id }}/{{$item->year}} /{{$item->slug}}">{{$item->title}} </a>
+                    {{ $lastYear = $item->year; }}
+                @else
+                    
+                    <a href="godisna_programa_za_rad_na_učilište_i_godišnji_i_polugodišnji izvestaji/{{ $item->category_id }}/{{$item->year}} /{{$item->slug}}">{{$item->title}} </a>
+                    {{ $lastYear = $item->year; }}
+                @endif
         @endif
-    @endforeach
-       
+        <?php
+            
+            $endYear = $item->end_year;
+         ?>
+        @endforeach
+
     </div>
+    @endif
+</div>
+{{-- 
+<div class="erasmus-wrapper">
+     @if(sizeof($documents)==0)
+     <div class="documents-container">
+        
+            <p>Тренутно нема објављених докумената</p>
+     </div>
+    @else 
+     {{ var_dump($uniqueYears) }}
+    <?php $lastYear = null;?>
+    <?php $containerCreated = false; ?>
+    @foreach ($documents as $item)
+    {{ var_dump($lastYear); }}
+    {{ var_dump($containerCreated) }}
+    
+    
+    @if($lastYear !== $item->year)
+    <div class="documents-container">
+        <?php $containerCreated = true ?>
+        {{ var_dump($containerCreated) }}
+    @endif    
+    {{ $lastYear = $item->year; }}
+     @if($item->end_year !== NULL)
+     
+        <div class="year-container"><h1>{{$item->year}}/{{$item->end_year}}</h1></div>
+        <a href="godisna_programa_za_rad_na_učilište_i_godišnji_i_polugodišnji izvestaji/{{ $item->category_id }}/{{$item->year}} /{{$item->slug}}">{{$item->title}} </a>
+     
+     @else
+     
+        <div class="year-container"><h1>{{$item->year}}</h1></div>
+        <a href="godisna_programa_za_rad_na_učilište_i_godišnji_i_polugodišnji izvestaji/{{ $item->category_id }}/{{$item->year}} /{{$item->slug}}">{{$item->title}} </a>
+        
+     @endif
+        @if ($containerCreated) {{-- Check if container is created --}}
+            {{-- </div> Close the last documents-container --}}
+        {{-- @endif
     @endforeach
-</div>    
+     
+    @endif --}}
+{{-- </div>     --}} 
+
+{{-- <div class="erasmus-wrapper">
+    @if(sizeof($documents)==0)
+    <div class="documents-container">
+        <p>Тренутно нема објављених докумената</p>
+    </div>
+    @else
+    <?php $prevYear = null; ?>
+    <div class="documents-container">
+    @foreach ($documents as $item)
+        @if ($item->year !== $prevYear)
+            @if ($prevYear !== null)
+            </div> <!-- Close previous year-container -->
+            @endif
+            <div class="year-container"><h1>{{ $item->year }}</h1></div> <!-- Open new year-container -->
+            <div class="documents-container"> <!-- Open documents-container for new year -->
+        @endif
+        <a href="godisna_programa_za_rad_na_učilište_i_godišnji_i_polugodišnji izvestaji/{{ $item->category_id }}/{{ $item->year }}/{{ $item->slug }}">{{ $item->title }}</a>
+        <?php $prevYear = $item->year; ?>
+    @endforeach
+    </div> <!-- Close last documents-container -->
+    
+    @endif
+</div> --}}
+
 @endsection

@@ -21,10 +21,20 @@
                 ">Choose document</button>
                 
         <label for="start_date">Start year</label>
-        <input type="text" class="form-control" id="start_date" name="start_date" required>
+         <select name="start_date" id="start_date" required class="year">
+            <option value="">Select Year</option>
+             @for ($year = 2016; $year <= 2030; $year++)
+                <option value="{{ $year }}">{{ $year }}</option>
+            @endfor
+        </select>
 
         <label for="end_date">End year</label>
-        <input type="text" class="form-control" id="end_date" name="end_date" required>
+         <select name="end_date" id="end_date" required class="year">
+            <option value="">Select Year</option>
+             @for ($year = 2016; $year <= 2030; $year++)
+                <option value="{{ $year }}">{{ $year }}</option>
+            @endfor
+        </select>
 
         <button type="submit" id="submit-button" class="button red-button">Submit</button>
     </form>

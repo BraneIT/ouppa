@@ -14,7 +14,7 @@
                     <h3>{{ $item->title }}</h3>
                     <div class="buttons-wrapper">
                         <a href="/admin/documents/edit/{{$item->category_id}}/{{$item->id}}">Edit</a>
-                    <form action="{{ route('document.destroy', $item->id) }}" method="POST">
+                    <form action="{{ route('document.destroy', ['category_id' => $item->category_id, 'id' => $item->id]) }}" method="POST">
                         @csrf
                         @method('DELETE')
                         <button type="submit">Delete</button>

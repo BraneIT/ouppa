@@ -23,10 +23,20 @@
                
 
         <label for="start_date">Start year</label>
-        <input type="text" class="form-control" id="start_date" name="start_date" value="{{old('start_date', $erasmus->start_date) }}">
+        <select name="start_date" id="start_date" required class="year">
+            <option value="">Select Year</option>
+             @for ($year = 2016; $year <= 2030; $year++)
+                 <option value="{{ $year }}" @if ($erasmus->start_date == $year) selected @endif>{{ $year }}</option>
+            @endfor
+        </select>
 
         <label for="end_date">End year</label>
-        <input type="text" class="form-control" id="end_date" name="end_date" value="{{old('end_date', $erasmus->end_date) }}">
+        <select name="end_date" id="end_date" required class="year">
+            <option value="">Select Year</option>
+             @for ($year = 2016; $year <= 2030; $year++)
+                 <option value="{{ $year }}" @if ($erasmus->end_date == $year) selected @endif>{{ $year }}</option>
+            @endfor
+        </select>
 
         <button type="submit" id="submit-button" class="button green-button">Submit</button>
     </form>

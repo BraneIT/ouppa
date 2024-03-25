@@ -29,22 +29,22 @@
                 <option value="{{ $category->id }}">{{ $category->name }}</option>
             @endforeach
         </select>
+        
         <label>Start year</label>
         <select name="year" id="year" required class="year">
             <option value="">Select Year</option>
              @for ($year = 2016; $year <= 2030; $year++)
                 <option value="{{ $year }}">{{ $year }}</option>
+
             @endfor
         </select>
      
         
             <label for="end_year">Year of end</label>
            
-            <select name="end_year" id="" class="end-year">
+            <select name="end_year" id="end_year" class="year">
                 <option value="">Select Year</option>
-                @for ($year = 2016; $year <= 2030; $year++)
-                    <option value="{{ $year }}">{{ $year }}</option>
-                @endfor
+                
             </select>
       
 

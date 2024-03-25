@@ -2,11 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Documents;
 use App\Models\Erasmus;
+use App\Models\Documents;
+use App\Models\Takmicenja;
 use Illuminate\Http\Request;
+use App\Models\RazvojnaPrograma;
+use App\Models\GodisnjiIzvjestaji;
 use App\Services\DocumentsService;
+use App\Models\FinansiskiDokumenti;
+use App\Models\IntegralnaInspekcija;
 use Illuminate\Support\Facades\File;
+use App\Models\IzvjestajOdSamoevaluacija;
 
 class DocumentsController extends Controller
 {
@@ -61,14 +67,16 @@ class DocumentsController extends Controller
     public function storeDocuments(Request $request){
         $validatedData = $request->validate([
             'title'=> 'required',
-            'file' => 'required|file|mimes:pdf,doc,docx|max:2048',
+            'file' => 'required|file|mimes:pdf|max:2048',
             'category_id' => 'required',
             'year' => 'required',
             'end_year' => 'nullable'
+        ],[
+            'file.mimes' => 'Please upload a pdf file'
         ]);
         $this->documentService->storeDocuments($validatedData);
         
-        // return redirect()->route('admin.documents.category', ['id' => $validatedData['category_id']]);
+        return redirect()->route('admin.documents.category', ['id' => $validatedData['category_id']]);
     }
     public function updateDocuments($id, Request $request){
         $id = $request->route('id');
@@ -83,8 +91,32 @@ class DocumentsController extends Controller
         //Redirect back to a specific route or page
         return redirect()->route('admin.documents.category', ['id' => $validatedData['category_id']]);
     }
-    public function destroyDocument($id){
-        $document = Documents::findOrFail($id);
+    public function destroyDocument($category_id,$id){
+        switch ($category_id) {
+            case 1:
+                $document =FinansiskiDokumenti::findOrFail($id);
+                break;
+            case 2:
+                $document =GodisnjiIzvjestaji::findOrFail($id);
+                break;
+            case 3:
+                $document =RazvojnaPrograma::findOrFail($id);
+                break;
+            case 4:
+                $document =IzvjestajOdSamoevaluacija::findOrFail($id);
+                break;
+            case 5:
+                $document = IntegralnaInspekcija::findOrFail($id);
+                break;
+            case 6:
+                $document = Takmicenja::findOrFail($id);
+                break;
+            
+            default:
+                // Handle invalid category_id
+                return null;
+        }
+        // $document = Documents::findOrFail($id);
         $documentPath = public_path($document->file);
         if (File::exists($documentPath)) {
             // Delete the image file from the public folder
@@ -92,6 +124,6 @@ class DocumentsController extends Controller
         }
 
         $document->delete(); 
-        return redirect('/admin/documents');
+        return redirect()->route('admin.documents.category', ['id' => $category_id]);
     }
 }

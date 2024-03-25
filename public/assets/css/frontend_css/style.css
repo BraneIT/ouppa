@@ -1,7 +1,9 @@
 * {
     margin: 0;
     padding: 0;
-    font-family: "Open Sans", sans-serif;
+    /* font-family: "Open Sans", sans-serif; */
+    font-family: "Caveat", cursive;
+    /* font-family: "Amatic SC", sans-serif; */
 }
 
 .menu {
@@ -45,8 +47,9 @@
     padding: 10px;
     text-decoration: none;
     font-weight: 300;
+
     color: #333;
-    transition: transform 0.2s ease;
+    transition: transform 0.4s ease;
 }
 .menu-items > a:hover {
     background-color: #fff100;
@@ -199,9 +202,13 @@
     background-color: #504f4f4d;
     border: 1px solid black;
 }
-.hero-info > p h1 {
-    background: rgba(255, 255, 255, 0.5);
-    backdrop-filter: blur(100px);
+.hero-info > p {
+    font-size: 20px;
+}
+.hero-info > h1 {
+    font-family: "Caveat", cursive;
+
+    font-size: 90px;
 }
 
 .dropdown-content .dropdown .dropbtn {
@@ -223,7 +230,27 @@
     align-items: center;
     justify-content: center;
 }
-
+#message-wrapper {
+    width: 100%;
+    height: 50dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.message-container {
+    width: 60%;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.message-container > h1 {
+    font-size: 60px;
+}
+.message-container > p {
+    font-size: 30px;
+}
 .navigator-container {
     width: 60%;
     height: 100%;
@@ -281,6 +308,7 @@
 
 .all-news {
     padding: 10px 15px;
+    font-size: 20px;
     background-color: #fff100;
     color: black;
     border-radius: 10px;
@@ -314,10 +342,10 @@
 }
 .news-details > h3 {
     margin: 20px 20px 0 20px;
-    padding-bottom: 10px;
+    padding-bottom: 5px;
 }
 .news-details > p {
-    margin: 20px 20px 0 20px;
+    margin: 5px 20px 0 20px;
 }
 
 .news-button {
@@ -364,10 +392,9 @@
     transform: rotate(45deg) translate(-5px, -6px);
 }
 .footer {
-    background-color: #fff100;
     padding-top: 20px;
     text-align: center;
-    background-image: url("/assets/images/footer-image-min.webp");
+    background: url("/assets/images/footer-image-min.webp"), #f8f8f8;
     background-size: 105% 100%;
     background-position: bottom;
     background-repeat: no-repeat;
@@ -537,12 +564,15 @@
     margin-bottom: 20px;
 }
 .news-image-container {
+    background-color: #ffffff;
     display: flex;
     align-items: center;
     justify-content: center;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
 }
 .default-image {
-    width: 70%;
+    width: 60%;
     height: 220px;
 }
 .gallery-index {
@@ -719,6 +749,61 @@
 .table tr {
     border-bottom: 1px solid black;
 }
+.mision-vision-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.mision-vision-container {
+    width: 70%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.mision-vision-margin {
+    margin-bottom: 32px;
+}
+.mision-vision-container > p {
+    font-size: 20px;
+    text-align: center;
+}
+.mision-vision-icons {
+    width: 13%;
+    height: 10dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #333;
+    color: #f8cb00;
+    font-size: 50px;
+    border-radius: 100%;
+    margin: 20px 0;
+}
+
+.prvacinja-wrapper {
+    margin: 20px 0;
+    width: 100%;
+    min-height: 50dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.prvacinja-image-container {
+    width: 70%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+.prvacinja-image-container > img {
+    width: 50%;
+    max-height: 700px;
+}
+
 @keyframes slide-top {
     0% {
         opacity: 0;
@@ -731,14 +816,20 @@
         transform: translateY(0);
     }
 }
-@media screen and (max-width: 1900px) {
+@media screen and (max-width: 1700px) {
     .menu {
         margin: 2% 5%;
     }
     .menu-items {
         padding: 0;
     }
-    .hero {
+    #hero {
+        height: 60dvh;
+    }
+    #hero > img {
+        height: 60dvh;
+    }
+    .hero-info {
         height: 60dvh;
     }
     .navigator-container {
@@ -810,6 +901,10 @@
     .table {
         width: 85%;
     }
+    .mision-vision-icons {
+        width: 15%;
+        height: 13dvh;
+    }
 }
 
 @media screen and (max-width: 1100px) {
@@ -877,7 +972,7 @@
         justify-content: space-between;
         flex-direction: row;
         position: relative;
-        min-height: 50px;
+        max-height: 50px;
         margin: 10px 0;
     }
     .navigator-container > a {
@@ -958,6 +1053,9 @@
     .menu-items > a:hover {
         border-radius: 0;
     }
+    .menu-items > a:focus {
+        background: none;
+    }
     .dropdown {
         width: 100%;
         padding: 5px 0;
@@ -1002,6 +1100,10 @@
         left: 0;
         box-shadow: none;
         animation: expandMenu 0.3s forwards;
+    }
+    .dropdown-content .dropdown .dropbtn {
+        background-color: #fff100 !important;
+        padding: 5px 0;
     }
     .hero {
         z-index: 1;
@@ -1121,9 +1223,30 @@
     }
     .news-details > h3 {
         text-align: center;
+        margin-top: 5px;
     }
     .news-details > p {
         text-align: center;
+        margin-top: 0;
+    }
+
+    .mision-vision-container {
+        width: 90%;
+    }
+    .mision-vision-container > p {
+        font-size: 16px;
+    }
+    .mision-vision-icons {
+        width: 40%;
+    }
+    .hero-info > h1 {
+        font-size: 32px;
+    }
+    .hero-info > p {
+        font-size: 16px;
+    }
+    .default-image {
+        height: 200px;
     }
 }
 @keyframes expandMenu {

@@ -98,9 +98,9 @@ class DocumentsService{
             $document->end_year = $data['end_year'];
         }
         // Save the document
-        // $document->save();
+        $document->save();
         // var_dump($document);
-        // return $document;
+        return $document;
     }
 
     public function updateDocument($id, array $data, Request $request){
@@ -183,7 +183,7 @@ class DocumentsService{
         $directory = 'assets/documents';
 
         // Generate a unique name for the file
-        $fileName = uniqid() . '.' . $file->getClientOriginalExtension();
+        $fileName = uniqid() . '.'. $file->getClientOriginalExtension();
 
         // Move the file to the storage location
         $file->move(public_path($directory), $fileName);

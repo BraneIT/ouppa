@@ -4,12 +4,14 @@ use App\Models\News;
 use Laravel\Telescope\Telescope;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Route;
+use Spatie\Permission\Contracts\Role;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\LoginController;
 use League\CommonMark\Node\Block\Document;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\DocumentsController;
+use App\Http\Controllers\PrvacinjaController;
 use App\Http\Controllers\ContactFormController;
 use App\Http\Controllers\AdminNewsPagesController;
 use App\Http\Controllers\AdminGaleryPagesController;
@@ -65,7 +67,13 @@ Route::middleware('auth')->group(function(){
     Route::get('/admin/documents/category/{id}', [AdminDocumentsPageController::class, 'documentsByCategories'])->name('admin.documents.category');
     Route::get('/admin/documents/edit/{category_id}/{id}', [AdminDocumentsPageController::class, 'editDocuments']);
     Route::post('/admin/documents/edit/{category_id}/{id}', [DocumentsController::class, 'updateDocuments'])->name('update.documents');
-    Route::delete('/admin/documents/{id}', [DocumentsController::class, 'destroyDocument'])->name('document.destroy');
+    Route::delete('/admin/documents/{category_id}/{id}', [DocumentsController::class, 'destroyDocument'])->name('document.destroy');
+
+    //Prvacinja routes
+    Route::get('/admin/prvacinja', [PrvacinjaController::class, 'show']);
+    Route::get('/admin/prvacinja/add', [PrvacinjaController::class, 'create']);
+    Route::post('/admin/prvacinja/add', [PrvacinjaController::class, 'store']);
+    Route::delete('/admin/prvacinja/delete/{id}', [PrvacinjaController::class, 'destroy']);
 });
 
 // Frontend routes
@@ -75,19 +83,25 @@ Route::get('/gallery', [FrontendController::class, 'gallery']);
 Route::get('/erasmus/{slug}', [FrontendController::class, 'show_erasmus']);
 Route::get('/statut', [FrontendController::class, 'statut']);
 Route::get('/finansiski_dokumenti', [FrontendController::class, 'finance']);
-Route::get('/finansiski_dokumenti/{year}', [FrontendController::class, 'show_finance']);
-Route::get('/finansiski_dokumenti/{year}/{slug}', [FrontendController::class, 'show_single_finance']);
+// Route::get('/finansiski_dokumenti/{year}', [FrontendController::class, 'show_finance']);
+Route::get('/finansiski_dokumenti/{category_id}/{year}/{slug}', [FrontendController::class, 'show_single_finance']);
 Route::get('/godisna_programa', [FrontendController::class, 'godisnaPrograma']);
 Route::get('/skica', [FrontendController::class, 'plan']);
-Route::get('/godisna_programa_za_rad_na_učilište_i_godišnji_i_polugodišnji izvestaji/{year}/{slug}', [FrontendController::class, 'show_single_finance']);
+Route::get('/godisna_programa_za_rad_na_učilište_i_godišnji_i_polugodišnji izvestaji/{category_id}/{year}/{slug}', [FrontendController::class, 'show_single_finance']);
+Route::get('/izvestaj_od_samoevaluacija/{category_id}/{year}/{slug}', [FrontendController::class, 'show_single_finance']);
+Route::get('/razvojna_programa/{category_id}/{year}/{slug}', [FrontendController::class, 'show_single_finance']);
 Route::get('/razvojna_programa', [FrontendController::class, 'razvojnaPrograma']);
 Route::get('/integralna_inspekcija', [FrontendController::class, 'integralnaInspekcija']);
 Route::get('/izvestaj_od_samoevaluacija', [FrontendController::class, 'evaluacija']);
 Route::get('/pravilnici_i_propisi', [FrontendController::class, 'regulations']);
 Route::get('/pravilnici_i_propisi/{slug}', [FrontendController::class, 'showRegulations']);
 Route::get('ucestvo_na_natprevari_i_ostali_nagradi/{year}', [FrontendController::class, 'showCompetitions']);
-Route::get('ucestvo_na_natprevari_i_ostali_nagradi/{year}/{slug}', [FrontendController::class, 'show_single_finance']);
+Route::get('ucestvo_na_natprevari_i_ostali_nagradi/{category_id}/{year}/{slug}', [FrontendController::class, 'show_single_finance']);
 Route::get('/rakovoditeli_na_paralelki', [FrontendController::class, 'rakovoditeljiNaParalelki']);
+Route::get('/vizija_i_misija', [FrontendController::class, 'misijaIVizija']);
+Route::get('/novosti', [FrontendController::class, 'news']);
 Route::get('/kontakt', [FrontendController::class, 'showContact']);
 Route::post('/kontakt', [ContactFormController::class, 'sendEmail'])->name('contact.send');
+Route::get("/prvacinja", [FrontendController::class, 'prvacinja']);
+Route::get('/informacii_od_javen_karakter', [FrontendController::class, 'publicInformations']);
 

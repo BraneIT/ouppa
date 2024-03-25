@@ -11,6 +11,10 @@
         <nav class="menu">
             <div class="logo-container">
             <img src="{{ asset('images/logo.png') }}" alt="Example Image">
+            <div class="logo-label">
+                <p>Admin panel</p>
+                <h3>Ou Petar Pop Arsov</h3>
+            </div>
         </div>
             <div class="menu-container">
                 <a href="/admin">Home</a>
@@ -18,6 +22,7 @@
                 <a href="/admin/gallery">Gallery</a>
                 <a href="/admin/erasmus">Erasmus+</a>
                 <a href="/admin/documents">Documents</a>
+                <a href="/admin/prvacinja">Prvačinja</a>
             </div>
         </nav>
 

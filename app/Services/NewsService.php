@@ -33,10 +33,13 @@ class NewsService
 
         if (isset($data['image'])) {
             $data['image'] = $this->uploadImage($data['image']);
+            $news->image = $data['image'];
         }
         
+        
         $news->fill($data)->save();
-
+         
+       
         return $news;
     }
 

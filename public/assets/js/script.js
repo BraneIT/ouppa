@@ -84,9 +84,7 @@ function closeAllDropdowns(currentBtn) {
         ) {
             content.classList.remove("dropdown-show"); // Remove animation class
             content.classList.add("dropdown-hide"); // Add animation class
-            setTimeout(function () {
-                content.style.display = ""; // Remove display property
-            }, 400);
+            content.style.display = "none";
         }
     });
 }

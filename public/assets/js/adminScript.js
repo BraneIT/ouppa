@@ -5,8 +5,9 @@ document.addEventListener("DOMContentLoaded", function () {
             .then((editor) => {
                 editor.model.document.on("change:data", () => {
                     editorValue = editor.getData();
-
-                    updateButtonColor();
+                    if (title) {
+                        updateButtonColor();
+                    }
                 });
             })
             .catch((error) => {
@@ -81,6 +82,7 @@ if (shortContent) {
 }
 
 function updateButtonColor() {
+    console.log(editorValue);
     if (title.value && shortContent.value && editorValue !== "") {
         submitButton.classList.remove("red-button");
         submitButton.classList.add("green-button");
@@ -159,26 +161,77 @@ const documentTitle = document.getElementById("documents-title");
 const documentFile = document.getElementById("document");
 const documentCategory = document.getElementsByClassName("category")[0];
 const documentYear = document.getElementById("year");
+const documentEndYear = document.getElementById("end_year");
 const submitDocumentsButton = document.getElementById("submit-documents");
 if ((documentTitle, documentFile, documentCategory, documentYear)) {
     documentTitle.addEventListener("input", submitDocuments);
     documentFile.addEventListener("input", submitDocuments);
     documentCategory.addEventListener("input", submitDocuments);
-    documentYear.addEventListener("input", submitDocuments);
+    documentYear.addEventListener("input", () => {
+        submitDocuments();
+        endYearOptions();
+    });
 }
 
 function submitDocuments() {
-    console.log("executed");
     if (
-        documentTitle.value &&
-        documentCategory.value &&
-        documentYear.value !== "" &&
-        documentFile.files.length > 0
+        document.getElementById("editMode") &&
+        document.getElementById("documents-title")
     ) {
-        submitDocumentsButton.classList.remove("red-button");
-        submitDocumentsButton.classList.add("green-button");
+        if (
+            documentTitle.value &&
+            documentCategory.value &&
+            documentYear.value !== "" &&
+            documentFile.files.length >= 0
+        ) {
+            submitDocumentsButton.classList.remove("red-button");
+            submitDocumentsButton.classList.add("green-button");
+        } else {
+            submitDocumentsButton.classList.remove("green-button");
+            submitDocumentsButton.classList.add("red-button");
+        }
     } else {
-        submitDocumentsButton.classList.remove("green-button");
-        submitDocumentsButton.classList.add("red-button");
+        if (
+            documentTitle.value &&
+            documentCategory.value &&
+            documentYear.value !== "" &&
+            documentFile.files.length > 0
+        ) {
+            console.log(documentTitle.value);
+            console.log(documentCategory.value);
+            console.log(documentYear.value);
+            console.log(documentEndYear.value);
+            submitDocumentsButton.classList.remove("red-button");
+            submitDocumentsButton.classList.add("green-button");
+        } else {
+            submitDocumentsButton.classList.remove("green-button");
+            submitDocumentsButton.classList.add("red-button");
+        }
+    }
+}
+function endYearOptions() {
+    let startYear = parseInt(documentYear.value);
+    if (document.getElementById("editMode")) {
+        console.log(documentEndYear.value);
+        let endYear = documentEndYear.value;
+        documentEndYear.innerHTML = "<option value=''>Select year</option>";
+        for (let year = startYear + 1; year <= 2030; year++) {
+            let option = document.createElement("option");
+            option.value = year;
+            option.textContent = year;
+            if (year == endYear) {
+                // Check if current year matches the desired year
+                option.selected = true; // Set the 'selected' attribute
+            }
+            documentEndYear.appendChild(option);
+        }
+    } else {
+        documentEndYear.innerHTML = "<option value=''>Select year</option>";
+        for (let year = startYear + 1; year <= 2030; year++) {
+            let option = document.createElement("option");
+            option.value = year;
+            option.textContent = year;
+            documentEndYear.appendChild(option);
+        }
     }
 }

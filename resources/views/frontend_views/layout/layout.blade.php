@@ -6,18 +6,20 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
    <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('assets/css/frontend_css/style.css') }}">
+<link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Caveat:wght@400..700&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{{ asset('assets/css/frontend_css/style.css') }}">
     <link rel="icon" type="image/png" href="{{ asset('images/logo.png') }}">
      <title>@yield('title')</title>
+
 </head>
 <body>
+
     <div class="menu">
             
         <div class="logo">
             <div class="logo-container">
-                <img src="{{ asset('images/fav-icon.png') }}" alt="Example Image">
+                <img src="{{ asset('assets/images/logo.png') }}" alt="Example Image">
             </div>
             <div class="logo-label">
                 <p>ОСНОВНО УЧИЛИШТЕ</p>
@@ -40,7 +42,7 @@
                 <a href="">РАЗВОЈ И ИСТОРИЈАТ</a>
                 <a href="">ОРГАНИЗАЦИЈА</a>
                 <a href="">ЗА НАШИОТ ПАТРОН</a>
-                <a href="">ВИЗИЈА И МИСИЈА</a>
+                <a href="/vizija_i_misija">ВИЗИЈА И МИСИЈА</a>
                 <div class="dropdown">
                     <button class="dropbtn">ПРИЕМНИ ДЕНОВИ <i class="fa-solid fa-angle-right"></i></button>
                     <div class="dropdown-content">
@@ -58,7 +60,7 @@
                         <a href="/godisna_programa">ГОДИШНА ПРОГРАМА ЗА РАБОТА НА УЧИЛИШТЕТО И ГОДИШНИ И ПОЛУГОДИШНИ ИЗВЈЕШТАИ</a>
                         <a href="/razvojna_programa">РАЗВОЈНА ПРОГРАМА ЗА РАБОТА НА УЧИЛИШТЕТО</a>
                         <a href="/izvestaj_od_samoevaluacija">ИЗВЈЕШТАИ ОД САМОЕВАЛУАЦИЈА</a>
-                        <a href="integralna_inspekcija">ИНТЕГРАЛНА ИНСПЕКЦИЈА</a>
+                        <a href="/integralna_inspekcija">ИНТЕГРАЛНА ИНСПЕКЦИЈА</a>
                         <a href="/skica">ПЛАН/СКИЦА НА УЧИЛИШТЕТО</a>
                         <a href="/pravilnici_i_propisi">ПРАВИЛНИЦИ И ПРОПИСИ</a>
                         <a href="/finansiski_dokumenti">ФИНАНСИСКИ ДОКУМЕНТИ</a>
@@ -111,40 +113,40 @@
                 </div>
             </div>
             <a href="#">ВРАБОТЕНИ <i class="fa-solid fa-angle-down"></i></a>
-            <a href="#">НОВОСТИ</a>
+            <a href="/novosti">НОВОСТИ</a>
             <a href="#">МЕЃУЕТНИЧКА ИНТЕГРАЦИЈА ВО ОБРАЗОВАНИЕТО</a>
+              <div class="dropdown">
+                <button class="dropbtn">ЕРАЗМУС + <i class="fa-solid fa-angle-down"></i></button>
+                <div class="dropdown-content erasmus">
+                    @foreach($erasmus as $item)
+                        <a href="/erasmus/{{$item->slug}}">{{ $item->name }}</a>
+                        <!-- Adjust the href attribute as needed -->
+                    @endforeach
+                </div>
+            </div>
             <div class="dropdown">
             <button class="dropbtn">УЧЕСТВО НА НАТПРЕВАРИ И ОСВЕНИ НАГРАДИ <i class="fa-solid fa-angle-down"></i></button>
                 <div class="dropdown-content  erasmus">
                     
                    @foreach ($competitions as $year)
-    <a href="ucestvo_na_natprevari_i_ostali_nagradi/{{ $year. "-" . $year+1 }}">УЧЕСТВО НА НАТПРЕВАРИ И ОСТАЛИ НАГРАДИ {{ $year }} / {{ $year+1 }}</a>
+    <a href="ucestvo_na_natprevari_i_ostali_nagradi/{{ $year}}">УЧЕСТВО НА НАТПРЕВАРИ И ОСТАЛИ НАГРАДИ {{ $year }} / {{ $year+1 }}</a>
 @endforeach
                 </div>
             </div>
             <a href="#">ПРОЕКТИ <i class="fa-solid fa-angle-down"></i></a>
             <a href="#">АКТИВНОСТИ</a>
             <a href="#">ЕТВИНИНГ <i class="fa-solid fa-angle-down"></i></a>
-            <div class="dropdown">
-            <button class="dropbtn">ЕРАЗМУС + <i class="fa-solid fa-angle-down"></i></button>
-            <div class="dropdown-content  erasmus">
-                @foreach($erasmus as $item)
-                    <a href="/erasmus/{{$item->slug}}">{{ $item->name }}</a>
-                    <!-- Adjust the href attribute as needed -->
-                @endforeach
-            </div>
-        </div>
-            <a href="#">ПРВАЧИЊА 2023/2024</a>
+          
+            <a href="/prvacinja">ПРВАЧИЊА 2023/2024</a>
             <a href="/gallery">ГАЛЕРИЈА</a>
-            
             <a href="/kontakt">КОНТАКТ</a>
-            <a href="#">ИНФОРМАЦИИ ОД ЈАВЕН КАРАКТЕР</a>
+            <a href="/informacii_od_javen_karakter">ИНФОРМАЦИИ ОД ЈАВЕН КАРАКТЕР</a>
         </div>
     </div>
     <div class="content">
         @yield('content')
     </div>
-    <div class="footer hidden">
+    <div class="footer">
         <div class="location-warpper">
             <div class="location-container">
                 <div class="map-wrapper">
